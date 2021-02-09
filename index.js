@@ -4,6 +4,7 @@ document.querySelectorAll('.drum').forEach((drum) =>
     const buttonInnerHTML = this.innerHTML
 
     makeSound(buttonInnerHTML)
+    buttonAnimation(buttonInnerHTML)
   })
 )
 
@@ -12,6 +13,7 @@ document.addEventListener('keydown', function (event) {
   const key = event.key
 
   makeSound(key)
+  buttonAnimation(key)
 })
 
 function makeSound(key) {
@@ -49,4 +51,14 @@ function makeSound(key) {
       console.log(buttonInnerHTML)
       break
   }
+}
+
+function buttonAnimation(currentKey) {
+  const activeButton = document.querySelector(`.${currentKey}`)
+
+  activeButton.classList.add('pressed')
+
+  setTimeout(() => {
+    activeButton.classList.remove('pressed')
+  }, 100)
 }
