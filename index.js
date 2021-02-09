@@ -1,13 +1,21 @@
-document
-  .querySelectorAll('.drum')
-  .forEach((drum) => drum.addEventListener('click', handleClick))
+// Detecting button presses
+document.querySelectorAll('.drum').forEach((drum) =>
+  drum.addEventListener('click', function () {
+    const buttonInnerHTML = this.innerHTML
 
-function handleClick() {
-  const buttonInnerHTML = this.innerHTML
+    makeSound(buttonInnerHTML)
+  })
+)
 
-  console.log(buttonInnerHTML)
+// Detecting keyboard presses
+document.addEventListener('keydown', function (event) {
+  const key = event.key
 
-  switch (buttonInnerHTML) {
+  makeSound(key)
+})
+
+function makeSound(key) {
+  switch (key) {
     case 'w':
       const tom1 = new Audio('./sounds/tom-1.mp3')
       tom1.play()
